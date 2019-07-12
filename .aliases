@@ -1,0 +1,52 @@
+alias phpunit="vendor/bin/phpunit"
+alias a="php artisan"
+alias cu="composer update"
+alias cr="composer require"
+alias ci="composer install"
+alias cdu="composer du"
+alias fuckframework="composer du -o"
+alias mfs="a migrate:fresh --seed"
+alias refresh="source ~/.zshrc"
+alias p="phpunit"
+alias pf="phpunit --filter "
+alias pc="p --coverage-html tests/coverage && open tests/coverage/index.html"
+alias pe="p --order-by=defects --stop-on-defect"
+alias pw="phpunit-watcher watch"
+alias pwf="pw --filter="
+alias oc="code ."
+
+alias ad="a dusk"
+alias adm="a dusk:make"
+alias adf="a dusk --filter"
+alias adfails="a dusk:fails"
+
+alias setupframework="ln -s /Users/jasper/Code/Valet/mach3framework mach3framework"
+
+alias xon="xdebug-toggle on"
+alias xoff="xdebug-toggle off"
+
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
+
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
+
+alias wip="git add . && git commit -m 'wip'"
+alias nah="git reset --hard && git clean -df"
+
+alias controller="a make:controller"
+alias model="a make:model"
+alias seeder="a make:seeder"
+alias migration="a make:migration"
+alias policy="a make:policy"
+alias factory"a make:factory"
+alias resource="a make:resource"
+alias unittest="a make:test"
+
+alias functionsconfig="code ~/.functions"
+alias aliasesconfig="code ~/.aliases"
+alias zshconfig="code ~/.zshrc"
+alias startupconfig="code ~/.startup"

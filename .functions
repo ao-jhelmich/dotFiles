@@ -1,0 +1,52 @@
+# Switch PHP versions
+phpv() {
+    valet stop
+    brew unlink php@7.1
+    brew unlink php@7.2
+    brew unlink php
+    brew link --force --overwrite $1
+    brew services start $1
+    composer global update
+    rm -f ~/.config/valet/valet.sock
+    valet install
+}
+
+alias php71="phpv php@7.1"
+alias php72="phpv php@7.2"
+alias php73="phpv php"
+
+# Create a new directory and enter it
+function mkd() {
+   mkdir -p "$@" && cd "$@"
+}
+
+# Global homestead
+function homestead() {
+    ( cd ~/Homestead && vagrant $* )
+}
+
+#small functions
+function gocode() {
+   cd ~/code
+}
+
+function govalet() {
+  cd ~/code/valet
+}
+
+# Copy ssh key
+function copysshkey() {
+    pbcopy < ~/.ssh/id_rsa.pub
+}
+
+function pcoverage() {
+    echo "Turning on xdebux" &&
+    xon &&
+    pc &&
+    xoff
+}
+
+
+# self invoking functions
+ssh-add ~/.ssh/ao-jhelmich-Github > /dev/null 2>&1
+ssh-add ~/.ssh/id_rsa > /dev/null 2>&1
