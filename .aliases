@@ -6,14 +6,17 @@ alias ci="composer install"
 alias cdu="composer du"
 alias fuckframework="composer du -o"
 alias mfs="a migrate:fresh --seed"
+alias producttype="a make:producttype "
 alias refresh="source ~/.zshrc"
 alias p="phpunit"
 alias pf="phpunit --filter "
 alias pc="p --coverage-html tests/coverage && open tests/coverage/index.html"
+alias pct="p --coverage-text"
 alias pe="p --order-by=defects --stop-on-defect"
 alias pw="phpunit-watcher watch"
 alias pwf="pw --filter="
 alias oc="code ."
+alias pt="vendor/bin/paratest"
 
 alias ad="a dusk"
 alias adm="a dusk:make"
@@ -21,6 +24,8 @@ alias adf="a dusk --filter"
 alias adfails="a dusk:fails"
 
 alias setupframework="ln -s /Users/jasper/Code/Valet/mach3framework mach3framework"
+alias setupframeworkoldschool="ln -s /Users/jasper/Code/Valet/mach3framework25 mach3framework"
+
 
 alias xon="xdebug-toggle on"
 alias xoff="xdebug-toggle off"
@@ -34,6 +39,9 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
+alias gs="git status"
+alias gaa="git add ."
+alias gcom="git commit -m"
 alias wip="git add . && git commit -m 'wip'"
 alias nah="git reset --hard && git clean -df"
 

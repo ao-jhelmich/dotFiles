@@ -46,7 +46,36 @@ function pcoverage() {
     xoff
 }
 
+function pall() {
+    echo "First we clear the laravel.log" &&
+    sleep .8 &&
+
+    echo "CLearing the log..."
+    echo -n '' > storage/logs/laravel.log &&
+
+    sleep .8 &&
+
+    echo "Now we run all the unit tests, " &&
+    echo "if there is an error from your tests it will be displayed in the newly generated laravel.log" &&
+    vendor/bin/phpunit
+}
+
+function resetVendor() {
+    echo 'First removing vendor' &&
+    rm -rf vendor/ &&
+    echo 'Then we remove composer.lock' &&
+    rm composer.lock &&
+    echo 'Then we install composer.json' &&
+    composer install &&
+    echo 'All done!'
+}
 
 # self invoking functions
 ssh-add ~/.ssh/ao-jhelmich-Github > /dev/null 2>&1
 ssh-add ~/.ssh/id_rsa > /dev/null 2>&1
+
+wipavans () {
+	git add .
+	NEXT_COMMIT_MESSAGE=`curl -s http://whatthecommit.com/index.txt`
+	git commit -m "[WIP] $NEXT_COMMIT_MESSAGE"
+}
