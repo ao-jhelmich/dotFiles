@@ -1,14 +1,18 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/jasper/.oh-my-zsh"
 
-# Path to your functions
-source ~/.functions
+DISABLE_MAGIC_FUNCTIONS=true
 
 # Path to your aliases
 source ~/.aliases
+
+# Path to your functions
+source ~/.functions
 
 # Start up script
 source ~/.startup
@@ -45,10 +49,10 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+# COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -72,8 +76,9 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  zsh-autosuggestions
+  zsh-syntax-highlighting
   git
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -105,8 +110,10 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 #
 # Example aliases
 
-export PATH="$PATH:$HOME/.composer/vendor/bin:$PATH"
+export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/Users/jasper/.npm/bin:$PATH"
 export PATH="/Users/jasper/.npm/bin/:$PATH"
+export PYTHON"=/usr/local/bin/python3"
 
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

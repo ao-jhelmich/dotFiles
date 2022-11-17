@@ -1,8 +1,7 @@
 # Switch PHP versions
 phpv() {
     valet stop
-    brew unlink php@7.1
-    brew unlink php@7.2
+    brew unlink php@8.0
     brew unlink php
     brew link --force --overwrite $1
     brew services start $1
@@ -11,9 +10,8 @@ phpv() {
     valet install
 }
 
-alias php71="phpv php@7.1"
-alias php72="phpv php@7.2"
-alias php73="phpv php"
+alias php80="phpv php@8.0"
+alias php81="phpv php"
 
 # Create a new directory and enter it
 function mkd() {
@@ -39,10 +37,26 @@ function copysshkey() {
     pbcopy < ~/.ssh/id_rsa.pub
 }
 
+function csfixandpush {
+    echo "Starting cs fixer" &&
+    php-cs-fixer fix &&
+    echo "Cs fixed" &&
+    echo "Adding to commit" &&
+    gaa &&
+    gcom "Php cs styling" &&
+    legit sync &&
+    echo "cs fixer pushed"
+}
+
+# Copy virtualhosts setup
+function copysetupvirtualhosts() {
+    echo "ln -s /data/srv/apache/virtualhosts virtualhosts" | pbcopy
+}
+
 function pcoverage() {
     echo "Turning on xdebux" &&
     xon &&
-    pc &&
+    phpunit --prepend xdebug-filter.php --coverage-html tests/coverage/ &&
     xoff
 }
 
@@ -50,7 +64,7 @@ function pall() {
     echo "First we clear the laravel.log" &&
     sleep .8 &&
 
-    echo "CLearing the log..."
+    echo "Clearing the log..."
     echo -n '' > storage/logs/laravel.log &&
 
     sleep .8 &&
@@ -70,12 +84,66 @@ function resetVendor() {
     echo 'All done!'
 }
 
+function resetNode() {
+    echo 'First removing node_modules' &&
+    rm -rf node_modules/ &&
+    echo 'Then we remove package-lock.json' &&
+    rm package-lock.json &&
+    echo 'Then we install package.json' &&
+    npm install &&
+    echo 'All done!'
+}
+
 # self invoking functions
-ssh-add ~/.ssh/ao-jhelmich-Github > /dev/null 2>&1
 ssh-add ~/.ssh/id_rsa > /dev/null 2>&1
 
 wipavans () {
 	git add .
 	NEXT_COMMIT_MESSAGE=`curl -s http://whatthecommit.com/index.txt`
-	git commit -m "[WIP] $NEXT_COMMIT_MESSAGE"
+	git commit -m "$NEXT_COMMIT_MESSAGE"
+}
+
+cdb () {
+    echo 'Creating database:' $1 &&
+    mysql -uroot -e "CREATE DATABASE IF NOT EXISTS $1" &&
+    echo 'Copying database name to clipboard: ' &&
+    echo $1 | pbcopy
+}
+
+commit () {
+    git add . && git commit -m $1
+}
+
+branch () {
+    git branch $1 && git checkout $1
+}
+
+policy () {
+    ( php artisan make:policy $1Policy --model=$1 )
+}
+
+makehtaccess () {
+    echo 'Generating htaccess' &&
+
+    echo "RewriteEngine off" >> .htaccess
+}
+
+function odb() {
+    TP_DRIVER="mysql"
+    TP_HOST="localhost"
+    TP_USER="root"
+    TP_PASSWORD=""
+
+    if [ -f ".env" ]; then
+        TP_DATABASE=$(grep -m1 DB_DATABASE .env | cut -d '=' -f2)
+    else
+        TP_DATABASE=$(php -r 'include("config.php"); echo DB_NAME;')
+    fi
+
+    open $TP_DRIVER://$TP_USRE:$TP_PASSWORD@$TP_HOST/$TP_DATABASE
+}
+
+# Scrape a single webpage with all assets
+function scrapeUrl() {
+    wget --adjust-extension --convert-links --page-requisites --span-hosts --no-host-directories "$1"
 }

@@ -1,14 +1,23 @@
+alias sail='nocorrect [ -f sail ] && bash sail || bash ./vendor/bin/sail'
 alias phpunit="vendor/bin/phpunit"
-alias a="php artisan"
-alias cu="composer update"
-alias cr="composer require"
-alias ci="composer install"
+alias rector="nocorrect vendor/bin/rector"
+alias a="nocorrect php artisan"
+alias atp="a test --parallel"
+alias cu="COMPOSER_MEMORY_LIMIT=-1 composer update"
+alias cr="COMPOSER_MEMORY_LIMIT=-1 composer require"
+alias ci="COMPOSER_MEMORY_LIMIT=-1 composer install"
 alias cdu="composer du"
+alias clog="truncate -s 0 \$(git rev-parse --show-toplevel)/storage/logs/*.log"
+
 alias fuckframework="composer du -o"
+alias fuckmach3box="cd ~/Mach3box && vagrant reload --provision"
+
+alias mf="a migrate:fresh"
 alias mfs="a migrate:fresh --seed"
 alias producttype="a make:producttype "
 alias refresh="source ~/.zshrc"
 alias p="phpunit"
+alias pa="a test"
 alias pf="phpunit --filter "
 alias pc="p --coverage-html tests/coverage && open tests/coverage/index.html"
 alias pct="p --coverage-text"
@@ -23,9 +32,8 @@ alias adm="a dusk:make"
 alias adf="a dusk --filter"
 alias adfails="a dusk:fails"
 
-alias setupframework="ln -s /Users/jasper/Code/Valet/mach3framework mach3framework"
-alias setupframeworkoldschool="ln -s /Users/jasper/Code/Valet/mach3framework25 mach3framework"
-
+alias setupframework="ln -s $HOME/Code/mach3framework mach3framework"
+alias setupframeworkoldschool="ln -s $HOME/Code/Valet/mach3framework25 mach3framework"
 
 alias xon="xdebug-toggle on"
 alias xoff="xdebug-toggle off"
@@ -46,15 +54,19 @@ alias wip="git add . && git commit -m 'wip'"
 alias nah="git reset --hard && git clean -df"
 
 alias controller="a make:controller"
-alias model="a make:model"
 alias seeder="a make:seeder"
 alias migration="a make:migration"
-alias policy="a make:policy"
-alias factory"a make:factory"
+alias factory="a make:factory"
 alias resource="a make:resource"
 alias unittest="a make:test"
+
+alias lvmk="a livewire:make "
+alias lvmv="a livewire:move "
 
 alias functionsconfig="code ~/.functions"
 alias aliasesconfig="code ~/.aliases"
 alias zshconfig="code ~/.zshrc"
 alias startupconfig="code ~/.startup"
+
+# Decryptions
+alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"

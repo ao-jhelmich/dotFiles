@@ -1,4 +1,2 @@
-source /Users/jasper/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 defaults write com.apple.dock show-recents -bool no
 defaults write com.apple.dock recent-apps -array # intentionally empty
