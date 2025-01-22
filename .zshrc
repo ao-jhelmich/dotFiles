@@ -79,6 +79,7 @@ plugins=(
   zsh-syntax-highlighting
   git
   zsh-autosuggestions
+  z
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -113,7 +114,17 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/Users/jasper/.npm/bin/:$PATH"
+export PATH="/Users/jasper/Library/Python/3.9/bin:$PATH"
+export PATH="/Users/jasper/Flutter/flutter/bin:$PATH"
+export PATH="/Users/Shared/DBngin/postgresql/14.3/bin:$PATH"
 export PYTHON"=/usr/local/bin/python3"
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+# bun completions
+[ -s "/Users/jasper/.bun/_bun" ] && source "/Users/jasper/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

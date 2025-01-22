@@ -34,7 +34,7 @@ function govalet() {
 
 # Copy ssh key
 function copysshkey() {
-    pbcopy < ~/.ssh/id_rsa.pub
+    pbcopy < ~/.ssh/id_ed25519.pub
 }
 
 function csfixandpush {
@@ -103,6 +103,13 @@ wipavans () {
 	git commit -m "$NEXT_COMMIT_MESSAGE"
 }
 
+wip () {
+    git add . || return
+    echo "Niet wippen jij! Wat heb je veranderd?"
+    read message
+    git commit -m "$message"
+}
+
 cdb () {
     echo 'Creating database:' $1 &&
     mysql -uroot -e "CREATE DATABASE IF NOT EXISTS $1" &&
@@ -130,7 +137,7 @@ makehtaccess () {
 
 function odb() {
     TP_DRIVER="mysql"
-    TP_HOST="localhost"
+    TP_HOST="127.0.0.1"
     TP_USER="root"
     TP_PASSWORD=""
 
@@ -146,4 +153,15 @@ function odb() {
 # Scrape a single webpage with all assets
 function scrapeUrl() {
     wget --adjust-extension --convert-links --page-requisites --span-hosts --no-host-directories "$1"
+}
+
+# Run ./vendor/bin/pint and if there are changes commit them with message "pint"
+function pintFixPush() {
+    ./vendor/bin/pint
+
+    if [ -n "$(git status --porcelain)" ]; then
+        git add .
+        git commit -m "pint"
+        git sync
+    fi
 }

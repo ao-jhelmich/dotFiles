@@ -4,10 +4,15 @@ alias rector="nocorrect vendor/bin/rector"
 alias a="nocorrect php artisan"
 alias atp="a test --parallel"
 alias cu="COMPOSER_MEMORY_LIMIT=-1 composer update"
+alias cb="COMPOSER_MEMORY_LIMIT=-1 composer bump"
 alias cr="COMPOSER_MEMORY_LIMIT=-1 composer require"
 alias ci="COMPOSER_MEMORY_LIMIT=-1 composer install"
+alias cso="COMPOSER_MEMORY_LIMIT=-1 composer -D outdated"
 alias cdu="composer du"
 alias clog="truncate -s 0 \$(git rev-parse --show-toplevel)/storage/logs/*.log"
+
+alias bd="bun run dev"
+alias bb="bun run build"
 
 alias fuckframework="composer du -o"
 alias fuckmach3box="cd ~/Mach3box && vagrant reload --provision"
@@ -22,17 +27,18 @@ alias pf="phpunit --filter "
 alias pc="p --coverage-html tests/coverage && open tests/coverage/index.html"
 alias pct="p --coverage-text"
 alias pe="p --order-by=defects --stop-on-defect"
-alias pw="phpunit-watcher watch"
 alias pwf="pw --filter="
 alias oc="code ."
 alias pt="vendor/bin/paratest"
+alias pest="vendor/bin/pest"
+alias pw="vendor/bin/pest --watch"
 
 alias ad="a dusk"
 alias adm="a dusk:make"
 alias adf="a dusk --filter"
 alias adfails="a dusk:fails"
 
-alias setupframework="ln -s $HOME/Code/mach3framework mach3framework"
+alias setupframework="ln -s $HOME/Sites/mach3framework mach3framework"
 alias setupframeworkoldschool="ln -s $HOME/Code/Valet/mach3framework25 mach3framework"
 
 alias xon="xdebug-toggle on"
@@ -50,8 +56,8 @@ alias sudo='sudo '
 alias gs="git status"
 alias gaa="git add ."
 alias gcom="git commit -m"
-alias wip="git add . && git commit -m 'wip'"
 alias nah="git reset --hard && git clean -df"
+alias clone="git clone"
 
 alias controller="a make:controller"
 alias seeder="a make:seeder"
@@ -70,3 +76,12 @@ alias startupconfig="code ~/.startup"
 
 # Decryptions
 alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
+
+alias dev="gco develop"
+alias mas="gco master"
+alias main="gco main"
+alias stag="gco staging"
+
+alias typesense="/usr/local/opt/typesense-server@27.0/bin/typesense-server --config\=/usr/local/etc/typesense/typesense.ini"
+
+alias pint="./vendor/bin/pint"
