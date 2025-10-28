@@ -104,7 +104,9 @@ wipavans () {
 }
 
 wip () {
-    ./vendor/bin/pint --dirty
+    if [ -f "./vendor/bin/pint" ]; then
+        ./vendor/bin/pint --dirty
+    fi
 
     git add . || return
     echo "Niet wippen jij! Wat heb je veranderd?"
