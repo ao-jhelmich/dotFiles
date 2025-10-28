@@ -82,6 +82,6 @@ alias mas="gco master"
 alias main="gco main"
 alias stag="gco staging"
 
-alias typesense="/usr/local/opt/typesense-server@27.0/bin/typesense-server --config\=/usr/local/etc/typesense/typesense.ini"
+alias typesense="/opt/homebrew/Cellar/typesense-server@27.1/27.1/bin/typesense-server --config=/opt/homebrew/etc/typesense/typesense.ini"
 
 alias pint="./vendor/bin/pint"

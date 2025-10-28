@@ -104,6 +104,8 @@ wipavans () {
 }
 
 wip () {
+    ./vendor/bin/pint --dirty
+
     git add . || return
     echo "Niet wippen jij! Wat heb je veranderd?"
     read message
