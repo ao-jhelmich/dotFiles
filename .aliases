@@ -75,10 +75,10 @@ alias migrate="c doctrine:migrations:migrate --no-interaction"
 alias fixture="c doctrine:fixtures:load --no-interaction"
 alias migfix="migrate && fixture"
 
-alias functionsconfig="cursor ~/.functions"
-alias aliasesconfig="cursor ~/.aliases"
-alias zshconfig="cursor ~/.zshrc"
-alias startupconfig="cursor ~/.startup"
+alias functionsconfig="cursor ~/dotFiles"
+alias aliasesconfig="cursor ~/dotFiles"
+alias zshconfig="cursor ~/dotFiles"
+alias startupconfig="cursor ~/dotFiles"
 
 # Decryptions
 alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
