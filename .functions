@@ -104,12 +104,13 @@ wipavans () {
 }
 
 wip () {
+    # Laravel 
     if [ -f "./vendor/bin/pint" ]; then
         ./vendor/bin/pint --dirty
     fi
 
     git add . || return
-    echo "Niet wippen jij! Wat heb je veranderd?"
+    echo "Wat heb je veranderd?"
     read message
     git commit -m "$message"
 }
@@ -127,6 +128,36 @@ commit () {
 
 branch () {
     git branch $1 && git checkout $1
+}
+
+sf() {
+    echo "Enter the ticket ID: "
+    read message
+    echo "--------------------------------"
+    echo "Creating new feature branch"
+    echo "--------------------------------"
+    echo "Switching to develop branch"
+    git sync
+    echo "--------------------------------"
+    echo "Creating new feature branch"
+    echo "--------------------------------"
+    branchName="feature/$(echo "$message" | tr '[:lower:]' '[:upper:]')"
+    git branch "$branchName" && git checkout "$branchName"
+}
+
+shf() {
+    echo "Enter the ticket ID: "
+    read message
+    echo "--------------------------------"
+    echo "Creating new hotfix branch"
+    echo "--------------------------------"
+    echo "Switching to master branch"
+    git sync
+    echo "--------------------------------"
+    echo "Creating new hotfix branch"
+    echo "--------------------------------"
+    branchName="hotfix/$(echo "$message" | tr '[:lower:]' '[:upper:]')"
+    git branch "$branchName" && git checkout "$branchName"
 }
 
 policy () {
@@ -168,4 +199,40 @@ function pintFixPush() {
         git commit -m "pint"
         git sync
     fi
+}
+
+bs() {
+  local out rc query branch
+
+  # Fase 1: alleen lokale branches
+  out="$(
+    git branch --format='%(refname:short)' | fzf \
+      --print-query \
+      --query="$*" \
+      --prompt='lokaal> ' \
+      --header='enter: kies branch · geen match + enter: zoek in remotes'
+  )"
+  rc=$?
+
+  # esc / ctrl-c → stoppen
+  [ "$rc" -eq 130 ] && return 130
+
+  query="$(printf '%s\n' "$out" | sed -n '1p')"
+  branch="$(printf '%s\n' "$out" | sed -n '2p')"
+
+  # Fase 2: geen lokale match → remote branches ophalen
+  if [ "$rc" -eq 1 ]; then
+    printf "geen lokale match voor '%s' — remote branches ophalen…\n" "$query" >&2
+    git fetch --all --prune >&2 || return 1
+
+    branch="$(
+      git branch -r --format='%(refname:short)' \
+        | grep -v -- '->' \
+        | sed 's|^[^/]*/||' \
+        | sort -u \
+        | fzf --query="$query" --prompt='remote> '
+    )" || return $?
+  fi
+
+  [ -n "$branch" ] && git switch "$branch"
 }
