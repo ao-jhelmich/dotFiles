@@ -142,8 +142,3 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 export GPG_TTY=$(tty)
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/jasper/.lmstudio/bin"
-# End of LM Studio CLI section
-
