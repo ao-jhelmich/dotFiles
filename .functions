@@ -130,18 +130,22 @@ branch () {
     git branch $1 && git checkout $1
 }
 
-sf() {
+function sf() {
     echo "Enter the ticket ID: "
     read message
+    echo "--------------------------------"
+    echo "Cleaning up the branch name"
+    echo "--------------------------------"
+    # Also remove any # in the ticket id
+    branchName="feature/$(echo "$message" | tr '[:lower:]' '[:upper:]' | sed 's/#//g')"
     echo "--------------------------------"
     echo "Switching to develop branch"
     echo "--------------------------------"
     git checkout develop
     git sync
     echo "--------------------------------"
-    echo "Creating new feature branch"
+    echo "Creating new feature branch: $branchName"
     echo "--------------------------------"
-    branchName="feature/$(echo "$message" | tr '[:lower:]' '[:upper:]')"
     git branch "$branchName" && git checkout "$branchName"
 }
 
