@@ -109,10 +109,9 @@ wip () {
         ./vendor/bin/pint --dirty
     fi
 
-    git add . || return
     echo "Wat heb je veranderd?"
     read message
-    git commit -m "$message"
+    git commit -am "$message" -n
 }
 
 cdb () {
