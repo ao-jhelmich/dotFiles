@@ -111,6 +111,7 @@ wip () {
 
     echo "Wat heb je veranderd?"
     read message
+    git add . -n
     git commit -am "$message" -n
 }
 
