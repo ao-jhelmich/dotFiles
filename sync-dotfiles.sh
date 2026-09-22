@@ -3,7 +3,7 @@ set -euo pipefail
 
 DOTFILES_DIR="$HOME/dotFiles"
 HOME_DIR="$HOME"
-FILES=(".aliases" ".functions" ".zshrc" )
+FILES=(".aliases" ".functions" ".zshrc" ".p10k.zsh")
 
 for file in "${FILES[@]}"; do
   repo_file="$DOTFILES_DIR/$file"
