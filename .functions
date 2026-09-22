@@ -109,7 +109,7 @@ wip () {
         ./vendor/bin/pint --dirty
     fi
 
-    git add . -n || return 1
+    git add . || return
     echo "Wat heb je veranderd?"
     read message
     git commit -m "$message" -n
