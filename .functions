@@ -112,7 +112,7 @@ wip () {
     git add . -n || return 1
     echo "Wat heb je veranderd?"
     read message
-    git commit -am "$message" -n
+    git commit -m "$message" -n
 }
 
 cdb () {
