@@ -13,14 +13,21 @@ if pgrep -xq zed || pgrep -xq Zed; then
   exit 1
 fi
 
+# Unquoted globs stay literal when nothing matches, so -e fails for them.
+exists_any() { for p in "$@"; do [ -e "$p" ] && return 0; done; return 1; }
+brew_try() { brew install "$@" || echo "WAARSCHUWING: brew install $* mislukt; installeer handmatig."; }
+
 if command -v brew >/dev/null; then
-  [ -d /Applications/Zed.app ] || [ -d "$HOME/Applications/Zed.app" ] || brew list --cask zed >/dev/null 2>&1 \
-    || command -v zed >/dev/null || brew install --cask zed
-  brew list --cask font-jetbrains-mono >/dev/null 2>&1 || brew install --cask font-jetbrains-mono
-  brew list php@8.2 >/dev/null 2>&1 || brew install php@8.2
-  brew list php@8.3 >/dev/null 2>&1 || brew install php@8.3
+  exists_any /Applications/Zed.app "$HOME/Applications/Zed.app" || command -v zed >/dev/null \
+    || brew list --cask zed >/dev/null 2>&1 || brew_try --cask zed
+  exists_any "$HOME"/Library/Fonts/JetBrainsMono* /Library/Fonts/JetBrainsMono* \
+    || brew list --cask font-jetbrains-mono >/dev/null 2>&1 || brew_try --cask font-jetbrains-mono
+  for php in php@8.2 php@8.3; do
+    exists_any "/opt/homebrew/opt/$php/bin/php" "/usr/local/opt/$php/bin/php" \
+      || brew list "$php" >/dev/null 2>&1 || brew_try "$php"
+  done
 else
-  echo "WAARSCHUWING: Homebrew ontbreekt; installeer Zed, JetBrains Mono en php@8.2 handmatig."
+  echo "WAARSCHUWING: Homebrew ontbreekt; installeer Zed, JetBrains Mono, php@8.2 en php@8.3 handmatig."
 fi
 
 if [ -d "$ZED_CONFIG" ]; then
