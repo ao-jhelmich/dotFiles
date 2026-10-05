@@ -14,7 +14,8 @@ if pgrep -xq zed || pgrep -xq Zed; then
 fi
 
 if command -v brew >/dev/null; then
-  brew list --cask zed >/dev/null 2>&1 || command -v zed >/dev/null || brew install --cask zed
+  [ -d /Applications/Zed.app ] || [ -d "$HOME/Applications/Zed.app" ] || brew list --cask zed >/dev/null 2>&1 \
+    || command -v zed >/dev/null || brew install --cask zed
   brew list --cask font-jetbrains-mono >/dev/null 2>&1 || brew install --cask font-jetbrains-mono
   brew list php@8.2 >/dev/null 2>&1 || brew install php@8.2
   brew list php@8.3 >/dev/null 2>&1 || brew install php@8.3
