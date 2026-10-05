@@ -1,0 +1,31 @@
+[
+  {
+    "label": "generate php namespace",
+    "command": "php",
+    "args": ["__HOME__/.config/zed/scripts/generate-php-namespace.php"],
+    "reveal": "never",
+    "hide": "on_success",
+    "show_summary": false,
+    "show_command": false,
+    "save": "current"
+  },
+  {
+    "label": "php expand class",
+    "command": "php",
+    "args": ["__HOME__/.config/zed/scripts/php-namespace-resolver.php", "expand"],
+    "reveal": "never",
+    "hide": "on_success",
+    "show_summary": false,
+    "show_command": false,
+    "save": "current"
+  },
+  {
+    "label": "duplicate current file",
+    "command": "__HOME__/.config/zed/scripts/duplicate-current-file.sh",
+    "reveal": "never",
+    "hide": "on_success",
+    "show_summary": false,
+    "show_command": false,
+    "save": "current"
+  }
+]

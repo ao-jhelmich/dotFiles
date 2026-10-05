@@ -1,0 +1,249 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "edit_predictions": {
+    "allow_data_collection": "no"
+  },
+  "agent_buffer_font_size": 19.2,
+  "ui_font_weight": 400.0,
+  "horizontal_scroll_margin": 5.0,
+  "git": {
+    "inline_blame": {
+      "enabled": true
+    }
+  },
+  "file_scan_exclusions": [
+    "**/.classpath",
+    "**/.project",
+    "**/.settings",
+    "**/.factorypath",
+    "..."
+  ],
+  "reduce_motion": "on",
+  "window_title_format": "${projectName}${separator}${filePath}",
+  "proxy": "",
+  "icon_theme": {
+    "mode": "light",
+    "light": "Material Icon Theme",
+    "dark": "Material Icon Theme"
+  },
+  "session": {
+    "trust_all_worktrees": true
+  },
+  "terminal": {
+    "bell": "system",
+    "copy_on_select": true,
+    "shell": "system",
+    "env": {
+      "FIG_NEW_SESSION": "\"1\"",
+      "CW_NEW_SESSION": "\"1\""
+    },
+    "font_size": 16,
+    "font_family": "JetBrains Mono",
+    "line_height": {
+      "custom": 1.1
+    },
+    "cursor_shape": "underline"
+  },
+  "project_panel": {
+    "auto_fold_dirs": false,
+    "dock": "right",
+    "indent_size": 16
+  },
+  "tabs": {
+    "git_status": true
+  },
+  "git_panel": {
+    "tree_view": true,
+    "dock": "right"
+  },
+  "preview_tabs": {
+    "enabled": false,
+    "enable_preview_from_file_finder": true
+  },
+  "status_bar": {
+    "experimental.show": true
+  },
+  "sticky_scroll": {
+    "enabled": false
+  },
+  "minimap": {
+    "show": "always",
+    "thumb": "always"
+  },
+  "cursor_blink": true,
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000
+    }
+  },
+  "buffer_font_family": "JetBrains Mono",
+  "buffer_font_size": 18.2,
+  "buffer_font_weight": 500,
+  "buffer_line_height": {
+    "custom": 2.5
+  },
+  "buffer_font_features": {
+    "calt": true
+  },
+  "current_line_highlight": "none",
+  "code_lens": "on",
+  "gutter": {
+    "breakpoints": false,
+    "min_line_number_digits": 2,
+    "folds": false,
+    "runnables": false,
+    "bookmarks": false
+  },
+  "semantic_tokens": "combined",
+  "diff_view_style": "unified",
+  "file_types": {
+    "php": [
+      ".php_cs",
+      ".php_cs.dist",
+      "*.php"
+    ]
+  },
+  "colorize_brackets": true,
+  "show_completions_on_input": true,
+  "show_whitespaces": "none",
+  "show_edit_predictions": true,
+  "indent_guides": {
+    "background_coloring": "indent_aware",
+    "coloring": "indent_aware",
+    "enabled": true
+  },
+  "wrap_guides": [
+    80,
+    120
+  ],
+  "lsp": {
+    "intelephense": {
+      "initialization_options": {
+        "globalStoragePath": "__HOME__/.config/intelephense/global",
+        "licenceKey": "__HOME__/.config/intelephense/global/licence.txt"
+      },
+      "settings": {
+        "environment": {
+          "phpVersion": "8.3"
+        },
+        "maxMemory": 18432,
+        "files": {
+          "maxSize": 5000000,
+          "exclude": [
+            "**/.git/**",
+            "**/.svn/**",
+            "**/.hg/**",
+            "**/CVS/**",
+            "**/.DS_Store/**",
+            "**/node_modules/**",
+            "**/bower_components/**",
+            "**/vendor/**/{Tests,tests}/**",
+            "**/.history/**",
+            "**/vendor/**/vendor/**",
+            "**/var/cache/**"
+          ]
+        },
+        "diagnostics": {
+          "strictTypes": true,
+          "exclude": {
+            "**/vendor/**": ["*"]
+          }
+        },
+        "codeLens": {
+          "overrides": { "enable": true },
+          "implementations": { "enable": true },
+          "parent": { "enable": true },
+          "references": { "enable": true },
+          "usages": { "enable": true }
+        },
+        "phpdoc": {
+          "functionTemplate": {
+            "summary": "$1",
+            "tags": [
+              "@param ${1:$SYMBOL_TYPE} $SYMBOL_NAME $2",
+              "@return ${1:$SYMBOL_TYPE} $2",
+              "@throws ${1:$SYMBOL_TYPE} $2"
+            ]
+          }
+        }
+      }
+    },
+    "phpactor": {
+      "binary": {
+        "path": "__HOME__/.local/bin/phpactor",
+        "arguments": ["language-server"],
+        "env": {
+          "PATH": "/opt/homebrew/opt/php@8.2/bin:/opt/homebrew/bin:/usr/bin:/bin"
+        }
+      }
+    }
+  },
+  "agent_servers": {
+    "cursor": {
+      "type": "registry"
+    }
+  },
+  "base_keymap": "VSCode",
+  "ui_font_size": 18.0,
+  "theme": {
+    "mode": "dark",
+    "light": "Material-Theme-Default",
+    "dark": "Material-Theme-Default"
+  },
+  "theme_overrides": {
+    "Material-Theme-Default": {
+      "editor.gutter.background": "#263238",
+      "terminal.background": "#263238",
+      "terminal.ansi.background": "#263238",
+      "text.accent": "#FF7042",
+      "icon.accent": "#FF7042",
+      "border.selected": "#FF7042",
+      "border.focused": "#FF7042",
+      "panel.focused_border": "#FF7042",
+      "tab.active_background": "#2e3a40",
+      "search.match_background": "#FF704240",
+      "players": [
+        {
+          "cursor": "#FFCC00",
+          "selection": "#FF704240",
+          "background": "#263238"
+        }
+      ]
+    }
+  },
+  "languages": {
+    "PHP": {
+      "colorize_brackets": true,
+      "show_completions_on_input": true,
+      "show_whitespaces": "none",
+      "formatter": "language_server",
+      "show_edit_predictions": true,
+      "wrap_guides": [
+        80,
+        120
+      ],
+      "semantic_tokens": "off",
+      "language_servers": [
+        "intelephense",
+        "!phpactor",
+        "!phptools",
+        "!phpantom"
+      ]
+    },
+    "Blade": {
+      "language_servers": [
+        "intelephense",
+        "!phpactor",
+        "!phptools",
+        "!phpantom"
+      ]
+    }
+  }
+}

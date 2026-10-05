@@ -1,0 +1,3 @@
+#!/bin/sh
+# Phpactor needs PHP ^8.2; keep the system `php` (currently 8.1) unchanged.
+exec /opt/homebrew/opt/php@8.2/bin/php "$HOME/.local/share/phpactor/phpactor.phar" "$@"

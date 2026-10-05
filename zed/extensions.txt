@@ -1,0 +1,8 @@
+catppuccin
+emmet
+html
+material-dark
+material-icon-theme
+php
+rainbow-csv
+xml
