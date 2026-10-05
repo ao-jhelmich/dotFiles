@@ -131,17 +131,20 @@ export PATH=$HOME/bin:/opt/homebrew/bin:$PATH
 
 export NVM_DIR="$HOME/.nvm"
 # Lazy-load nvm to improve shell startup time
-nvm() {
-  unset -f nvm
-  [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
-  nvm "$@"
-}
+# nvm() {
+#   unset -f nvm
+#   [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
+#   nvm "$@"
+# }
 # Skip nvm bash_completion on startup for faster initialization
 # [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
 
 
 # bun completions
 [ -s "/Users/jasper/.bun/_bun" ] && source "/Users/jasper/.bun/_bun"
+
+# nvm
+source $(brew --prefix nvm)/nvm.sh
 
 # bun
 export BUN_INSTALL="$HOME/.bun"

@@ -90,7 +90,6 @@ alias stag="gco staging"
 
 alias typesense="/opt/homebrew/Cellar/typesense-server@27.1/27.1/bin/typesense-server --config=/opt/homebrew/etc/typesense/typesense.ini"
 
-alias pint="./vendor/bin/pint"
 alias phpcs="./vendor/bin/phpcs"
 alias phpstan="./vendor/bin/phpstan"
 alias grumphp="./vendor/bin/grumphp run"
