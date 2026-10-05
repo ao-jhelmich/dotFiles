@@ -29,8 +29,19 @@ grep -rlI --exclude=*.mdb "$HOME" "$REPO_ZED" 2>/dev/null | while read -r file; 
   perl -pi -e 's/\Q$ENV{HOME}\E/__HOME__/g' "$file"
 done
 
-if [ -d "$ZED_SUPPORT/extensions/installed" ]; then
-  ls "$ZED_SUPPORT/extensions/installed" > "$REPO_ZED/extensions.txt"
+rm -rf "$REPO_ZED/extension-overrides"
+installed="$ZED_SUPPORT/extensions/installed"
+if [ -d "$installed" ]; then
+  ls "$installed" > "$REPO_ZED/extensions.txt"
+  # Hand edits inside extensions (folder icon colours, PHP highlight queries).
+  # ponytail: detected as files newer than the extension's extension.toml; an extension update overwrites them.
+  (cd "$installed" && for ext in */; do
+    ext="${ext%/}"
+    find "$ext" -type f -newer "$ext/extension.toml" ! -name '*.wasm' ! -path '*/grammars/*'
+  done) | while read -r f; do
+    mkdir -p "$REPO_ZED/extension-overrides/$(dirname "$f")"
+    cp -p "$installed/$f" "$REPO_ZED/extension-overrides/$f"
+  done
 fi
 
 echo "Zed setup gesynct naar $REPO_ZED:"

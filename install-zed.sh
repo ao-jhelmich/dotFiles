@@ -92,4 +92,17 @@ if [ ! -s "$lic_dir/licence.txt" ]; then
   fi
 fi
 
+installed="$HOME/Library/Application Support/Zed/extensions/installed"
+missing=""
+for ext in "$REPO_ZED"/extension-overrides/*/; do
+  [ -d "$ext" ] || continue
+  name="$(basename "$ext")"
+  # No -p: the copies must be newer than extension.toml so sync-zed.sh picks them up again.
+  if [ -d "$installed/$name" ]; then cp -R "$ext." "$installed/$name/"; else missing="$missing $name"; fi
+done
+
 echo "Zed setup geinstalleerd. Start Zed; extensies worden automatisch geinstalleerd."
+if [ -n "$missing" ]; then
+  echo "LET OP: aanpassingen voor$missing nog niet toegepast. Start Zed, wacht tot de extensies"
+  echo "geinstalleerd zijn, sluit Zed en draai dit script opnieuw."
+fi
