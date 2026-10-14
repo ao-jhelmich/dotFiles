@@ -73,7 +73,7 @@ alias lvmv="a livewire:move "
 
 alias migrate="c doctrine:migrations:migrate --no-interaction"
 alias fixture="c doctrine:fixtures:load --no-interaction"
-alias migfix="migrate && fixture"
+alias migfix="c doctrine:database:drop --force && c doctrine:database:create && c doctrine:migrations:migrate --no-interaction && c doctrine:fixtures:load --no-interaction"
 
 alias functionsconfig="zed ~/dotFiles"
 alias aliasesconfig="zed ~/dotFiles"
